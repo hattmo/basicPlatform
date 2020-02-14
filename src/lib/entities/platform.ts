@@ -1,18 +1,22 @@
 import { IEntity } from "@hattmo/coreengine"
 import { IBasicEntityState, IPhysicsState } from "../states/states"
-import { IPlatformMessage } from "../messages/messages";
+import { ICollideableMessage } from "../messages/messages";
 
 type IPlatformState = IBasicEntityState & IPhysicsState;
 
-export default (x: number, y: number, w: number, h: number): IEntity<IPlatformState> => {
-    return [{ entityName: "platform", x, y, w, h, dx: 0, dy: 0 }, ({ state, send }) => {
-        const platformMessage: IPlatformMessage = {
+export default (x: number, y: number, w: number, h: number, dx: number = 0, dy: number = 0): IEntity<IPlatformState> => {
+    return [{ name: "platform", x, y, w, h, dx, dy }, ({ state, send }) => {
+        const platformMessage: ICollideableMessage = {
             ...state,
-            name: "platformMessage",
+            name: "collideableMessage",
         }
         send(platformMessage);
-        return state
+        return {
+            ...state,
+            x: state.x + state.dx,
+            y: state.y + state.dy
+        }
     }];
 }
 
-export const isPlatform = (target: any): target is IPlatformState => target?.entityName === "platform"
+export const isPlatform = (target: any): target is IPlatformState => target?.name === "platform"

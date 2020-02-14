@@ -7,13 +7,15 @@ export default (root: HTMLCanvasElement) => {
     if (ctx !== null) {
         const renderer = (states: any[]) => {
             ctx.clearRect(0, 0, root.width, root.height);
-            ctx.fillStyle = "black";
+
             states.forEach((state) => {
                 if (isPlatform(state)) {
                     const { x, y, w, h } = state;
+                    ctx.fillStyle = "black";
                     ctx.fillRect(x, y, w, h);
                 } else if (isBadGuy(state)) {
                     const { x, y, w, h } = state;
+                    ctx.fillStyle = "red";
                     ctx.fillRect(x, y, w, h)
                 }
 

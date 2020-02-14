@@ -2,12 +2,14 @@ export interface BaseMessage {
     name: string,
 }
 
-export interface IPlatformMessage extends BaseMessage {
-    name: "platformMessage",
+export interface ICollideableMessage extends BaseMessage {
+    name: "collideableMessage",
     x: number,
     y: number,
     w: number,
     h: number,
+    dx: number,
+    dy: number
 }
 
-export const isPlatformMessage = (target: any): target is IPlatformMessage => target?.name === "platformMessage"
+export const isCollideableMessage = (target: any): target is ICollideableMessage => target?.name === "collideableMessage"

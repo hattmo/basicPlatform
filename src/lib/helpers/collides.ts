@@ -1,13 +1,31 @@
-interface IHitBox {
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-}
+import { IPhysicsState } from "../states/states"
+type collisionDirection = "none" | "left" | "right" | "top" | "bottom";
 
-export default (rect1: IHitBox, rect2: IHitBox): boolean => {
-    return (rect1.x <= rect2.x + rect2.w &&
-        rect1.x + rect1.w >= rect2.x &&
-        rect1.y <= rect2.y + rect2.h &&
-        rect1.y + rect1.h >= rect2.y)
+
+export default (agent: IPhysicsState, target: IPhysicsState): collisionDirection => {
+    if (!(
+        agent.x <= target.x + target.w &&
+        agent.x + agent.w >= target.x &&
+        agent.y <= target.y + target.h &&
+        agent.y + agent.h >= target.y
+    )) {
+        return "none";
+    }
+    const oldPos = {
+        x: agent.x - agent.dx,
+        y: agent.y - agent.dy,
+        w: agent.w,
+        h: agent.h,
+    }
+    if (oldPos.y + oldPos.h <= target.y) {
+        return "top";
+    } else if (oldPos.y >= target.y + target.h) {
+        return "bottom";
+    } else if (oldPos.x >= target.x + target.w) {
+        return "right";
+    } else if (oldPos.x + oldPos.w <= target.x) {
+        return "left";
+    }else {
+        return "none";
+    }
 }

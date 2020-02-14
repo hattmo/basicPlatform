@@ -1,5 +1,5 @@
 export interface IBasicEntityState {
-    entityName: string;
+    name: string;
 }
 export interface IPhysicsState {
     x: number;

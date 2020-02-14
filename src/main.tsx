@@ -1,6 +1,6 @@
 import coreEngine from "@hattmo/coreengine";
 import renderer from "./lib/renderers/renderer";
-import level from "./lib/entities/level";
+import level from "./lib/levels/level";
 
 
 const docstyle = document.body.style;
