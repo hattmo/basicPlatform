@@ -10,16 +10,13 @@
         "start": "webpack-dev-server --content-base=dist --inline --watch --hot"
     },
     "devDependencies": {
+        "@hattmo/coreengine": "^1.0.3",
         "@types/chai": "^4.2.9",
         "@types/mocha": "^7.0.1",
         "@types/node": "^13.7.1",
-        "@types/react": "^16.9.19",
-        "@types/react-dom": "^16.9.5",
         "chai": "^4.2.0",
         "html-webpack-plugin": "^3.2.0",
         "mocha": "^7.0.1",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
         "ts-loader": "^6.2.1",
         "ts-node": "^8.6.2",
         "tslint": "^6.0.0",
