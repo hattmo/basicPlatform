@@ -1,14 +1,9 @@
 import { IEntity, IterateFunction } from "@hattmo/coreengine";
-import { IPhysicsState } from "../states/states";
+import { IPhysicsState, ICollisionState } from "../states/states";
 import { isCollideableMessage } from "../messages/messages";
 import collides from "../helpers/collides";
 
-export type RigidBodyState = IPhysicsState & {
-    collideTop: boolean;
-    collideBottom: boolean;
-    collideLeft: boolean;
-    collideRight: boolean;
-}
+export type RigidBodyState = IPhysicsState & ICollisionState;
 
 export default (gravity: number, maxFallSpeed: number) => {
     return <T>(target: IEntity<T & IPhysicsState>): IEntity<T & RigidBodyState> => {

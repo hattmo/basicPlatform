@@ -1,5 +1,6 @@
-import { isPlatform } from "../entities/platform";
-import { isBadGuy } from "../entities/badGuy";
+import { isPlatform } from "../composites/platform";
+import { isBadGuy } from "../composites/badGuy";
+import { isPlayer } from "../composites/player";
 
 
 export default (root: HTMLCanvasElement) => {
@@ -16,6 +17,10 @@ export default (root: HTMLCanvasElement) => {
                 } else if (isBadGuy(state)) {
                     const { x, y, w, h } = state;
                     ctx.fillStyle = "red";
+                    ctx.fillRect(x, y, w, h)
+                } else if (isPlayer(state)) {
+                    const { x, y, w, h } = state;
+                    ctx.fillStyle = "green";
                     ctx.fillRect(x, y, w, h)
                 }
 

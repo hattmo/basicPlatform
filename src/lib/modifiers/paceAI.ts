@@ -12,9 +12,6 @@ export default (walkSpeed: number) => {
             } else if (targetState.collideRight) {
                 newDX = walkSpeed;
             }
-            if (!targetState.collideBottom) {
-                console.log("Im Falling");
-            }
             return {
                 ...targetState,
                 dx: newDX,
